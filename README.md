@@ -1,6 +1,2 @@
 # Graphes
-Projet théorie des graphes 2016-2017
-
-Par:
-* Nicolas Surbayrole
-* Sacha Liguori
+UE théorie des graphes ENSEEIHT 2016/17
