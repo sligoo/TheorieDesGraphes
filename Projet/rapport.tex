@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\author{Sacha LIGUORI, Nicolas SURBAYROLE}
+\title{Rapport du Projet de théorie de Graphe}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+
+\section{Compréhension et modélisation}
+
+\subsection{Programme de jeu d'échec}
+
+\paragraph{}
+L'algorithme qui est utilisé dans le cas du jeu d'échec est un algo de minimax. Le but de cet algorithme est de choisir le moins mauvais choix, en considérant que l'on joue en permanence le meilleur coup pour nous et que l'adversaire va jouer le plus mauvais coup pour nous. Le score calculé au n\oe ud terminé est donné par un autre algorithme qui doit être capable d'évaluer un score pour le plateau proposé.
+
+Les n\oe uds intermédiaires sont scorés en fonction du prochain joueur. Si le n\oe ud correspond à un demi-coups de l'adversaire, on va lui donner le score minimum que l'on peux trouver parmi ses fils. Dans le cas de nos propres demi-coups, il va affecter le score du meilleur des fils. Le choix du coup solution sera fait à la racine en choisissant le coup ayant le meilleur score.
+
+\paragraph{}
+
+L'algorithme du mimimax a le défaut de demander beaucoup de ressource (algorithme en $O(e^{x})$ en fonction du nombre de possibilité par demi-coup ). Dans le cas d'un calcul à une profondeur de 12 avec 30 choix par demi-coups, on obtient donc environ $30^{12} \simeq 531 \times 10^{15}$ cas terminaux. Il peux être intéressant de mettre en place en plus un optimisation de mémoïsation afin d'éviter de recalculer les coups déjà calculés. Il peut aussi être envisagé de faire une présélection des coups les plus intéressant en exécutant l'algorithme avec une profondeur plus faible et en supprimant les coups qui retourne à une position passé.
+
+
+
+\end{document}
