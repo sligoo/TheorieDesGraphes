@@ -4,6 +4,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+\usepackage{graphicx}
+
 \author{Sacha LIGUORI, Nicolas SURBAYROLE}
 \title{Rapport du Projet de théorie de Graphe}
 \date{\today}
@@ -32,6 +34,21 @@ Les n\oe uds intermédiaires sont scorés en fonction du prochain joueur. Si le 
 
 L'algorithme du mimimax a le défaut de demander beaucoup de ressource (algorithme en $O(e^{x})$ en fonction du nombre de possibilité par demi-coup ). Dans le cas d'un calcul à une profondeur de 12 avec 30 choix par demi-coups, on obtient donc environ $30^{12} \simeq 531 \times 10^{15}$ cas terminaux. Il peux être intéressant de mettre en place en plus un optimisation de mémoïsation afin d'éviter de recalculer les coups déjà calculés. Il peut aussi être envisagé de faire une présélection des coups les plus intéressant en exécutant l'algorithme avec une profondeur plus faible et en supprimant les coups qui retourne à une position passé.
 
+\subsection{Réseau de Bayésien}
 
+\paragraph{}
+
+D'après les lois de probabilité, on sais que $P(M) = P(M \wedge A \wedge P) + P(M \wedge A \wedge \neg P) + P(M \wedge \neg A \wedge P) + P(M \wedge \neg A \wedge \neg P)$
+
+\paragraph{}
+
+Pour le jeu de Monty Hall, le premier choix du candidat est indépendant de la position de la clef (aucune information n'est fournie au candidat). De la même manière, la clef est placé dans la boite avant que le candidat effectue son choix. Il y a donc indépendance entre $C_1$ et $B_G$. Le présentateur va donc choisir une des boîtes restantes vides. La position de la clef et le premier choix du candidat va donc amener la probabilité de $B_R$ à 1 dès que le candidat ne choisis pas la boîte contenant la clef lors de son premier choix. $B_R$ est donc fortement lié à $C_1$ et $B_G$. $C_2$ est aussi lié à $B_R$ car il est impossible que $B_R = C_2$.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[height=3cm]{{Monty_Hall.dot}.jpg}
+    \end{center}
+    \caption{Dépendance des variables aléatoires dans le jeu de Monty Hall}
+\end{figure}
 
 \end{document}
