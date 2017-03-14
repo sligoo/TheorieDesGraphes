@@ -1,0 +1,25 @@
+// tuto : http://www.tonyballantyne.com/graphs.html
+// doc : http://graphviz.org/pdf/dotguide.pdf
+// doc attribut : www.graphviz.org/doc/info/attrs.html 
+
+
+digraph plan{
+    nodesep=1.0 // increases the separation between nodes
+    //node [shape=circle, fontname="Verdana"]
+
+    R1 [label="R 1", shape=box]
+    R2 [label="R 2", shape=box]
+    
+    A_1 [label="A 1"]
+    A_N [label="A N"]
+    B_1 [label="B 1"]
+    B_N [label="B N"]
+    X_1 [label="X 1"]
+    X_N2 [label="X N/2"]
+    X_N21 [label="X N/2+1"]
+    X_N [label="X N"]
+
+    R1 -> A_1 -> A_N -> X_N21 -> X_N
+    R2 -> X_1 -> X_N2 -> B_1 -> B_N
+
+}
