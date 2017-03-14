@@ -6,6 +6,7 @@
 digraph plan{
     nodesep=1.0 // increases the separation between nodes
     //node [shape=circle, fontname="Verdana"]
+    edge [dir=back]
 
     R1 [label="R 1", shape=box]
     R2 [label="R 2", shape=box]
@@ -19,7 +20,13 @@ digraph plan{
     X_N21 [label="X N/2+1"]
     X_N [label="X N"]
 
-    R1 -> A_1 -> A_N -> X_N21 -> X_N
-    R2 -> X_1 -> X_N2 -> B_1 -> B_N
+    R1 -> A_1 
+    A_1 -> A_N [style=dashed] 
+    A_N-> X_N21 
+    X_N21-> X_N [style=dashed]
+    R2 -> X_1 
+    X_1-> X_N2 [style=dashed]
+    X_N2 -> B_1
+    B_1 -> B_N [style=dashed]
 
 }
