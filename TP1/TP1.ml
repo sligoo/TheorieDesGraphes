@@ -5,7 +5,7 @@ module M = G.Mark;;
 let even (x : int) = (x mod 2 = 0 : bool);;
 
 let est_degre_pair graphe sommet = 
-	even (out_degree graphe sommet)
+	even (G.out_degree graphe sommet)
 ;;
 
 let sommets_impairs g = 

@@ -34,7 +34,7 @@ Les n\oe uds intermédiaires sont scorés en fonction du prochain joueur. Si le 
 
 L'algorithme du mimimax a le défaut de demander beaucoup de ressource (algorithme en $O(e^{x})$ en fonction du nombre de possibilité par demi-coup ). Dans le cas d'un calcul à une profondeur de 12 avec 30 choix par demi-coups, on obtient donc environ $30^{12} \simeq 531 \times 10^{15}$ cas terminaux. Il peux être intéressant de mettre en place en plus un optimisation de mémoïsation afin d'éviter de recalculer les coups déjà calculés. Il peut aussi être envisagé de faire une présélection des coups les plus intéressant en exécutant l'algorithme avec une profondeur plus faible et en supprimant les coups qui retourne à une position passé.
 
-\subsection{Réseau de Bayésien}
+\subsection{Réseau Bayésien}
 
 \paragraph{}
 
@@ -50,5 +50,26 @@ Pour le jeu de Monty Hall, le premier choix du candidat est indépendant de la p
     \end{center}
     \caption{Dépendance des variables aléatoires dans le jeu de Monty Hall}
 \end{figure}
+
+\paragraph{}
+On simplifie le problème en supposant que le candidat choisit la boite rouge et décide de changer de choix.\\
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+$C_{2}$ / $B_{G}$ & Rouge & Vert & Bleue & Probabilité marginale \\ 
+\hline 
+Rouge & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{2}$ \\ 
+\hline 
+Vert & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{2}$ \\ 
+\hline 
+Bleu & $0$ & $0$ & $0$ & $0$ \\ 
+\hline 
+Probabilité marginale & $\frac{1}{3}$ & $\frac{1}{3}$ & $\frac{1}{3}$ & $1$ \\ 
+\hline 
+\end{tabular} 
+
+\paragraph{}
+$P(C_2=B_G) = P(C_2=Rouge \wedge B_G=Rouge) + P(C_2=Vert \wedge B_G=Vert)$ \\
+$P(C_2=B_G) = \frac{1}{6} + \frac{1}{6} = \frac{1}{3}$
 
 \end{document}
