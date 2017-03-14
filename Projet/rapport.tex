@@ -79,4 +79,37 @@ La modélisation sous forme d'un DAG le temps d'attente à la correction d'un pa
 L'ordonnancement s'effectue en faisant les $a_N$ et $N_x$ premieres tâches en même temps puis $b_N$ et $N_x$ dernières, il en résulte donc un temps de $T_2(N) = 2N$.
 
 \paragraph{}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[height=5cm]{{Ordonnancement2c.dot}.jpg}
+    \end{center}
+    \caption{Graphe d'oronnancement}
+\end{figure}
+
+\section{Ordonnancement séquentiel}
+
+\subsection{Tri topologique}
+$Y$ contient les noeuds non numérotés mais dont tous les prédécesseurs le sont, $Z$ contient tous les noeuds numérotés et $X=\mathcal{V} \backslash (Y \cup Z)$. L'ordre topologique total est garantit par un parcours en commencant par la source et il est total car $Y$ est modélisé par une file (FIFO)
+
+\paragraph{ }
+Pour chacun des noeud il va être appelé Succ, et des q'il y a un arc il est appelé Precc.
+$\mathcal{C}(c,n,m) = (n+m)*c$
+
+\paragraph{}
+L'utilisation d'une pile induit un parcours en \textbf{profondeur} alors que celui d'une file se fait en \textbf{largeur}.
+
+\section{Ordonnancement parallèle}
+La borne inférieure du temps total d'éxecution est $t_{min}=\lceil \frac{\sum_{i=1}^{n}}{r} \rceil$. Si cette borne est atteinte alors l'utilisation des ressources est maximale.
+
+\paragraph{ }
+La contrainte de ressources limitées sur les listes se traduit par un nombre maximal de $r$ tâches en parallèle.
+
+\subsection{Amélioration de l'ordonnancement avec heuristique de priorité}
+cf. cour
+
+\section{Extension aux tâches et ressources hétérogènes}
+La prise en compte de l'hétérogénité dans problème conduit à un temps d'execution réel de $\alpha * t$
+
+\paragraph{}
+
 \end{document}
