@@ -1,6 +1,7 @@
 open Dag;;
 open Queue;;
 open List;;
+open Set;;
 (*******************************************)
 (*  Projet théorie des graphes 2016/2017   *)
 (* Par Nicolas Surbayrole et Sacha Liguori *)
@@ -56,3 +57,22 @@ let rec addAvertex graphe y z =
    *)
 let tri_topologique t = List.rev (addAvertex t (source t) []);;
 
+let listunique l =
+    let rec listuniquerec l1 l2 =
+        (match l1 with
+           | [] -> l2
+           | h::t -> if (List.mem h l2) then (listuniquerec t l2) else (listuniquerec t (h::l2)) )
+    in listuniquerec l [];;
+
+let rec addNvertexs graphe n y z =
+    let rec addvertexs n y l = (
+        if ((n = 0) || (Queue.is_empty y)) then l else addvertexs (n-1) y ((Queue.take y)::l)) in
+    if (Queue.is_empty y) then z else
+        let verts = (addvertexs n y []) in
+        let z2 = verts::z in
+        let successeurs = (listunique (fold_right (fun a l -> (List.append l (Dag.succ graphe a)) ) verts [])) in
+        addNvertexs graphe n (predInZ graphe successeurs y (List.flatten z2)) z2;;
+
+let ordonnanceur_multi n graphe = List.rev (addNvertexs graphe n (source graphe) []);;
+
+    
