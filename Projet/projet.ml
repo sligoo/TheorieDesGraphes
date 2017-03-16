@@ -10,18 +10,14 @@ let rec print_liste_vectex l =
       | [] -> ()
       | h::t -> ( (print_endline (Dag.namev h)); (print_liste_vectex t));;
 
-let rec app e l =
-  match l with
-  |[] -> false
-  |(e', _) :: tl -> e = e' || app e tl
-;;
- 
-let rec inclus l1 l2 =
-  match l1, l2 with
-  | [], _ -> true
-  | _, [] -> false
-  | (a, _)::tl1, l2 -> app a l2 && inclus tl1 l2
-;;
+let rec list_in_list l1 l2 = 
+    match (l1, l2) with
+      | [], _ -> true
+      | _, [] -> false
+      | h1::t1, h2::t2 -> if (h1 = h2) 
+                          then (list_in_list t1 t2)
+                          else ((list_in_list ([h1]) t2) && (list_in_list t1 l2));;
+                                        
 
 (* predInZ *)
 (* Ajouter a la liste y,les noeuds se trouvant dans la liste *)
@@ -35,13 +31,17 @@ let rec inclus l1 l2 =
 let rec predInZ graphe noeuds y z =
 	match noeuds with
 		| [] -> y
-		| t::q -> if (inclus (pred graphe t) z) then predInZ graphe q (t::y) z
+		| t::q -> if (list_in_list (pred graphe t) z) then predInZ graphe q (t::y) z
   				else predInZ graphe q y z ;;	
 
 (* renvoie la liste des sommets sans prédécesseur *)
 let source t = (Dag.fold_vertex (fun v l -> if ((Dag.pred t v) = []) then v::l else l) t []);;
 
-
+let rec addAvertex graphe y z =
+    match y with
+    | [] -> z
+    | h::t -> let z2 = h::z in addAvertex graphe (predInZ graphe (Dag.succ graphe h) y z2) z2;;
+              
 
 (* Question 6 *)
 (* Fonction: Tri Topologique *)
@@ -52,4 +52,5 @@ let source t = (Dag.fold_vertex (fun v l -> if ((Dag.pred t v) = []) then v::l e
    specifs: 
    - vous implementerez l'algorithme de tri topologique de l'enonce, en utilisant un format de file pour Y (section 1)
    *)
-(*let tri_topologique t = *)
+let tri_topologique t = addAvertex t (source t) [];;
+
