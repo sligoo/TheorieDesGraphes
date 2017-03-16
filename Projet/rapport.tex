@@ -4,9 +4,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-
 \usepackage{graphicx}
 
 \author{Sacha LIGUORI, Nicolas SURBAYROLE}
@@ -61,33 +58,19 @@ On simplifie le problème en supposant que le candidat choisit la boite rouge et
 \hline 
 $C_{2}$ / $B_{G}$ & Rouge & Vert & Bleue & Probabilité marginale \\ 
 \hline 
-Rouge & $1/6$ & $1/6$ & $1/6$ & $1/2$ \\ 
+Rouge & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{2}$ \\ 
 \hline 
-Vert & $1/6$ & $1/6$ & $1/6$ & $1/2$ \\ 
+Vert & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{2}$ \\ 
 \hline 
 Bleu & $0$ & $0$ & $0$ & $0$ \\ 
 \hline 
-Probabilité marginale & $1/3$ & $1/3$ & $1/3$ & $1$ \\ 
+Probabilité marginale & $\frac{1}{3}$ & $\frac{1}{3}$ & $\frac{1}{3}$ & $1$ \\ 
 \hline 
 \end{tabular} 
 
 \paragraph{}
 $P(C_2=B_G) = P(C_2=Rouge \wedge B_G=Rouge) + P(C_2=Vert \wedge B_G=Vert)$ \\
 $P(C_2=B_G) = \frac{1}{3} + \frac{1}{3} = \frac{2}{3}$
-
-\paragraph{}
-Le jeu peut être simplifié de la manière suivante : peut importe le premier choix du candidat, la boite qu'il choisit à une probabilité de $\frac{1}{3}$ de contenir la clef contre $\frac{2}{3}$ pour le groupe de boîtes non choisies. Le présentateur mène alors une action qui change uniquement la cardinalité du groupe non choisi par le candidat. La seul boîte qui reste donc dans ce groupe à donc désormais une probabilité de $\frac{2}{3}$ de contenir la clef. L'action de changement de boîte a donc $\frac{2}{3}$ de probabilité d'être fructueuse.
-
-\paragraph{}
-De manière plus formelle :
-
-\begin{gather}
-  P(C_1=B_G) = \frac{1}{3} \\
-  P(C_2=B_G|C_1 \neq C_2 \cap C_1 = B_G) = 0 \\
-  P(C_2=B_G|C_1 \neq C_2 \cap C_1 \neq B_G) = 1 \\
-  P(C_2=B_G|C_1 \neq C_2) = \frac{2}{3}
-\end{gather}
-
 
 \subsection{Extension aux tâches en coût inconnu}
 La modélisation sous forme d'un DAG le temps d'attente à la correction d'un partiel ou le temps de traitement d'un dossier dans l'administration peut mener à des tâches au coût inconnu. 
@@ -110,7 +93,7 @@ $Y$ contient les noeuds non numérotés mais dont tous les prédécesseurs le so
 
 \paragraph{ }
 Pour chacun des noeud il va être appelé Succ, et des q'il y a un arc il est appelé Precc.
-$\mathcal{C}(c,n,m) = (n+m)\times c$
+$\mathcal{C}(c,n,m) = (n+m)*c$
 
 \paragraph{}
 L'utilisation d'une pile induit un parcours en \textbf{profondeur} alors que celui d'une file se fait en \textbf{largeur}.
@@ -125,7 +108,7 @@ La contrainte de ressources limitées sur les listes se traduit par un nombre ma
 cf. cour
 
 \section{Extension aux tâches et ressources hétérogènes}
-La prise en compte de l'hétérogénité dans problème conduit à un temps d'execution réel de $\alpha \times t$
+La prise en compte de l'hétérogénité dans problème conduit à un temps d'execution réel de $\alpha * t$
 
 \paragraph{}
 
