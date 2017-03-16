@@ -1,4 +1,6 @@
 open Dag;;
+open Queue;;
+open List;;
 (*******************************************)
 (*  Projet théorie des graphes 2016/2017   *)
 (* Par Nicolas Surbayrole et Sacha Liguori *)
@@ -7,8 +9,8 @@ open Dag;;
 (* print les sommets contenus dans une liste *)
 let rec print_liste_vectex l = 
     match l with
-      | [] -> ()
-      | h::t -> ( (print_endline (Dag.namev h)); (print_liste_vectex t));;
+      | [] -> (print_endline " ")
+      | h::t -> ( (print_string ((Dag.namev h) ^" ")); (print_liste_vectex t));;
 
 let rec list_in_list l1 l2 = 
     match (l1, l2) with
@@ -31,16 +33,16 @@ let rec list_in_list l1 l2 =
 let rec predInZ graphe noeuds y z =
 	match noeuds with
 		| [] -> y
-		| t::q -> if (list_in_list (pred graphe t) z) then predInZ graphe q (t::y) z
-  				else predInZ graphe q y z ;;	
+        | t::q -> (if (list_in_list (Dag.pred graphe t) z) then (Queue.add t y) ); predInZ graphe q y z ;;	
 
 (* renvoie la liste des sommets sans prédécesseur *)
-let source t = (Dag.fold_vertex (fun v l -> if ((Dag.pred t v) = []) then v::l else l) t []);;
+let source t = (Dag.fold_vertex (fun v l -> (if ((Dag.pred t v) = []) then (Queue.add v l) ); l) t (Queue.create ()));;
 
 let rec addAvertex graphe y z =
-    match y with
-    | [] -> z
-    | h::t -> let z2 = h::z in addAvertex graphe (predInZ graphe (Dag.succ graphe h) y z2) z2;;
+    if (Queue.is_empty y) then z else
+        let h = (Queue.take y) in  
+        let z2 = h::z in 
+        addAvertex graphe (predInZ graphe (Dag.succ graphe h) y z2) z2;;
               
 
 (* Question 6 *)
@@ -52,5 +54,5 @@ let rec addAvertex graphe y z =
    specifs: 
    - vous implementerez l'algorithme de tri topologique de l'enonce, en utilisant un format de file pour Y (section 1)
    *)
-let tri_topologique t = addAvertex t (source t) [];;
+let tri_topologique t = List.rev (addAvertex t (source t) []);;
 
