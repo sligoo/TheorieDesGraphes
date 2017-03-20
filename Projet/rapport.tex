@@ -29,7 +29,7 @@
 \subsection{Programme de jeu d'échec}
 
 \paragraph{}
-L'algorithme qui est utilisé dans le cas du jeu d'échec est un algo de minimax. Le but de cet algorithme est de choisir le moins mauvais choix, en considérant que l'on joue en permanence le meilleur coup pour nous et que l'adversaire va jouer le plus mauvais coup pour nous. Le score calculé au n\oe ud terminé est donné par un autre algorithme qui doit être capable d'évaluer un score pour le plateau proposé.
+L'algorithme qui est utilisé dans le cas du jeu d'échec est un algorithme de minimax. Le but de cet algorithme est de choisir le moins mauvais choix, en considérant que l'on joue en permanence le meilleur coup pour nous et que l'adversaire va jouer le plus mauvais coup pour nous. Le score calculé au n\oe ud terminé est donné par un autre algorithme qui doit être capable d'évaluer un score pour le plateau proposé.
 
 Les n\oe uds intermédiaires sont scorés en fonction du prochain joueur. Si le n\oe ud correspond à un demi-coups de l'adversaire, on va lui donner le score minimum que l'on peux trouver parmi ses fils. Dans le cas de nos propres demi-coups, il va affecter le score du meilleur des fils. Le choix du coup solution sera fait à la racine en choisissant le coup ayant le meilleur score.
 
@@ -45,7 +45,7 @@ D'après les lois de probabilité, on sais que $P(M) = P(M \wedge A \wedge P) + 
 
 \paragraph{}
 
-Pour le jeu de Monty Hall, le premier choix du candidat est indépendant de la position de la clef (aucune information n'est fournie au candidat). De la même manière, la clef est placé dans la boite avant que le candidat effectue son choix. Il y a donc indépendance entre $C_1$ et $B_G$. Le présentateur va donc choisir une des boîtes restantes vides. La position de la clef et le premier choix du candidat va donc amener la probabilité de $B_R$ à 1 dès que le candidat ne choisis pas la boîte contenant la clef lors de son premier choix. $B_R$ est donc fortement lié à $C_1$ et $B_G$. $C_2$ est aussi lié à $B_R$ car il est impossible que $B_R = C_2$.
+Pour le jeu de Monty Hall, le premier choix du candidat est indépendant de la position de la clé (aucune information n'est fournie au candidat). De la même manière, la clé est placé dans la boite avant que le candidat effectue son choix. Il y a donc indépendance entre $C_1$ et $B_G$. Le présentateur va donc choisir une des boites restantes vides. La position de la clé et le premier choix du candidat va donc amener la probabilité de $B_R$ à 1 dès que le candidat ne choisis pas la boite contenant cette clé lors de son premier choix. $B_R$ est donc fortement lié à $C_1$ et $B_G$. $C_2$ est aussi lié à $B_R$ car il est impossible que $B_R = C_2$.
 
 \begin{figure}[h]
     \begin{center}
@@ -89,44 +89,54 @@ De manière plus formelle :
 \end{gather}
 
 
-\subsection{Extension aux tâches en coût inconnu}
-La modélisation sous forme d'un DAG le temps d'attente à la correction d'un partiel ou le temps de traitement d'un dossier dans l'administration peut mener à des tâches au coût inconnu. 
+\subsection{Extension aux tâches en cout inconnu}
+La modélisation sous forme d'un DAG le temps d'attente à la correction d'un partiel ou le temps de traitement d'un dossier dans l'administration peut mener à des tâches au cout inconnu. 
 
 \paragraph{}
-L'ordonnancement s'effectue en faisant les $a_N$ et $N_x$ premieres tâches en même temps puis $b_N$ et $N_x$ dernières, il en résulte donc un temps de $T_2(N) = 2N$.
+L'ordonnancement s'effectue en faisant les $a_N$ et $N_x$ premières tâches en même temps puis $b_N$ et $N_x$ dernières, il en résulte donc un temps de $T_2(N) = 2N$.
 
 \paragraph{}
 \begin{figure}[h]
     \begin{center}
         \includegraphics[height=5cm]{{Ordonnancement2c.dot}.jpg}
     \end{center}
-    \caption{Graphe d'oronnancement}
+    \caption{Graphe d’ordonnancement}
 \end{figure}
 
 \section{Ordonnancement séquentiel}
 
 \subsection{Tri topologique}
-$Y$ contient les noeuds non numérotés mais dont tous les prédécesseurs le sont, $Z$ contient tous les noeuds numérotés et $X=\mathcal{V} \backslash (Y \cup Z)$. L'ordre topologique total est garantit par un parcours en commencant par la source et il est total car $Y$ est modélisé par une file (FIFO)
+$Y$ contient les nœuds non numérotés mais dont tous les prédécesseurs le sont, $Z$ contient tous les nœuds numérotés et $X=\mathcal{V} \backslash (Y \cup Z)$. L'ordre topologique total est garantit par un parcours en commençant par la source et il est total car $Y$ est modélisé par une file (FIFO)
 
 \paragraph{ }
-Pour chacun des noeud il va être appelé Succ, et des q'il y a un arc il est appelé Precc.
+Pour chacun des nœud il va être appelé Succ, et des qu’il y a un arc il est appelé Precc.
 $\mathcal{C}(c,n,m) = (n+m)\times c$
 
 \paragraph{}
 L'utilisation d'une pile induit un parcours en \textbf{profondeur} alors que celui d'une file se fait en \textbf{largeur}.
 
 \section{Ordonnancement parallèle}
-La borne inférieure du temps total d'éxecution est $t_{min}=\lceil \frac{\sum_{i=1}^{n}}{r} \rceil$. Si cette borne est atteinte alors l'utilisation des ressources est maximale.
+La borne inférieure du temps total d’exécution est $t_{min}=\lceil \frac{\sum_{i=1}^{n}}{r} \rceil$. Si cette borne est atteinte alors l'utilisation des ressources est maximale.
 
 \paragraph{ }
 La contrainte de ressources limitées sur les listes se traduit par un nombre maximal de $r$ tâches en parallèle.
 
-\subsection{Amélioration de l'ordonnancement avec heuristique de priorité}
+\paragraph{}
+Le test non exhaustif a été effectué sur 4 DAG différents. Le parcourt en file n'est pas optimal pour la distribution des tâches, il n'y a pas de gestion des priorités dans leur exécution, donc le temps d’exécution n'est pas optimal.
+
+\subsection{Amélioration de l'ordonnancement avec euristique de priorité}
 
 
 \section{Extension aux tâches et ressources hétérogènes}
-La prise en compte de l'hétérogénité dans problème conduit à un temps d'execution réel de $\alpha \times t$
+La prise en compte de l’hétérogénéité dans problème conduit à un temps d’exécution réel de $\alpha \times t$
 
 \paragraph{}
+L'ordonnancement est valide mais certaines tâches sont affectées aux mauvaises ressources ce qui allonge leur propre temps d’exécution et donc le temps d’exécution global. Le temps d’exécution est donc proportionnel à $\alpha$  
+
+\paragraph{}
+Après l'adaptation de l'algorithme pour que le calcul de l’ordonnancement bénéficie de l’hétérogénéité des 2 types de ressources et de tâche, les processus étant d'abord affectés aux ressources qui leur correspond le plus, l'influence de $\alpha$ a diminué. Si jamais une tâche s'effectue sur une ressource inappropriée, $\alpha$ influe toujours.
+
+\paragraph{}
+Notre stratégie a un principal défaut, si à un instant $t$ un processus est affecté à la mauvaise ressource alors qu'il aurait pu l'être correctement à $t+1$ alors le temps d'exécution n'est pas optimal. Il serait également possible d'affecter les processus par tri de priorité. 
 
 \end{document}
