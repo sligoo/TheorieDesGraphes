@@ -1,13 +1,11 @@
-open Dag;;
-open Queue;;
-open List;;
-open Set;;
 (*******************************************)
 (*  Projet théorie des graphes 2016/2017   *)
 (* Par Nicolas Surbayrole et Sacha Liguori *)
 (*******************************************)
 
-
+open Dag;;
+open Queue;;
+open List;;
 
 (************************************************************
  ******************** Question 6 ****************************
